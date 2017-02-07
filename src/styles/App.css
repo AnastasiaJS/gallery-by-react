@@ -8,18 +8,39 @@ html, body {
   width: 100%;
   height: 100%; }
 
+/*stage -- begin*/
 .stage {
   position: relative;
   width: 100%;
   height: 680px; }
 
-.image-sec {
+.img-sec {
   position: relative;
   width: 100%;
   height: 100%;
   overflow: hidden;
   background-color: #ddd; }
+  .img-figure {
+    position: absolute;
+    width: 320px;
+    height: 360px;
+    margin: 0;
+    padding: 40px;
+    box-sizing: border-box;
+    background-color: #fff; }
+    .img-figure img {
+      width: 240px;
+      height: 240px;
+      object-fit: cover; }
 
+  figcaption {
+    text-align: center; }
+    figcaption .img-title {
+      margin: 20px 0 0 0;
+      color: #a7a0a2;
+      font-size: 16px; }
+
+/*stage --ending */
 /*controller -- start*/
 .controller-nav {
   position: absolute;
