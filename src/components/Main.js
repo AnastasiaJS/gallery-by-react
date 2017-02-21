@@ -32,50 +32,49 @@ class AppComponent extends React.Component {
     this.state = {
       imgsArrangeArr: [
 
-      ]
+      ],
+      Constant:{
+        centerPos: {
+          left: 0,
+          right: 0
+        },
+        hPosRange: {//水平方向的取值范围
+          leftSecx: [0, 0],
+          rightSecx: [0, 0],
+          y: [0, 0]
+        },
+        vPosRange: {//垂直方向的取值范围
+          x: [0, 0],
+          topY: [0, 0]
+        }
+      }
     }
   }
 
-  Constant = {
-    centerPos: {
-      left: 0,
-      right: 0
-    },
-    hPosRange: {//水平方向的取值范围
-      leftSecx: [0, 0],
-      rightSecx: [0, 0],
-      y: [0, 0]
-    },
-    vPosRange: {//垂直方向的取值范围
-      x: [0, 0],
-      topY: [0, 0]
-    }
-
-  }
   /*
    * 重新布局所有图片
    * */
   rearrange(centerIndex) {
 
     let imgsArrangeArr = this.state.imgsArrangeArr,
-      Constant = this.Constant,
+      Constant = this.state.Constant,
       centerPos = Constant.centerPos,
       hPosRange = Constant.hPosRange,
       vPosRange = Constant.vPosRange,
       hPosRangeLeftSecx = hPosRange.leftSecx,
       hPosRangeRightSecx = hPosRange.rightSecx,
-      hPosRangeY = hPosRange.topY,
+      hPosRangeY = hPosRange.y,
       vPosRangeTopY = vPosRange.topY,
       vPosRangeX = vPosRange.x,
 
       imgsArrangeTopArr = [],
-      topImgNum = Math.ceil(Math.random() * 2),//取1个或者不取
+      topImgNum = Math.floor(Math.random() * 2),//取1个或者不取
 
       topImgSpliceIndex = 0,
       imgsArrangeCenterArr = imgsArrangeArr.splice(centerIndex, 1);
 
     //  首先居中centerIndex 的图片
-    imgsArrangeCenterArr[0].pos = centerPos
+    imgsArrangeCenterArr[0].pos = centerPos;
     //  取出要布局的上侧的图片的状态信息
     topImgSpliceIndex = Math.ceil(Math.random() * (imgsArrangeArr.length - topImgNum));
     imgsArrangeTopArr = imgsArrangeArr.splice(topImgSpliceIndex, topImgNum);
@@ -133,24 +132,24 @@ class AppComponent extends React.Component {
       halfImgW = Math.ceil(imgW / 2),
       halfImgH = Math.ceil(imgH / 2);
 
-    this.Constant.centerPos = {
+    this.state.Constant.centerPos = {
       left: halfStageH - halfImgH,
       top: halfStageW - halfImgW,
-    }
+    };
     //计算左侧、右侧图片排布位置的取值范围
-    this.Constant.hPosRange.leftSecx[0] = -halfImgW
-    this.Constant.hPosRange.leftSecx[1] = halfImgW - halfImgW * 3;
-    this.Constant.hPosRange.rightSecx[0] = halfStageW + halfImgW;
-    this.Constant.hPosRange.rightSecx[1] = stageW - halfImgW;
+    this.state.Constant.hPosRange.leftSecx[0] = -halfImgW
+    this.state.Constant.hPosRange.leftSecx[1] = halfImgW - halfImgW * 3;
+    this.state.Constant.hPosRange.rightSecx[0] = halfStageW + halfImgW;
+    this.state.Constant.hPosRange.rightSecx[1] = stageW - halfImgW;
 
-    this.Constant.hPosRange.y[0] = -halfImgW;
-    this.Constant.hPosRange.y[1] = stageH - halfImgH;
+    this.state.Constant.hPosRange.y[0] = -halfImgW;
+    this.state.Constant.hPosRange.y[1] = stageH - halfImgH;
     //计算上册图片排布位置的取值范围
 
-    this.Constant.vPosRange.topY[0] = -halfImgH;
-    this.Constant.vPosRange.topY[1] = halfStageH - halfImgH * 3;//
-    this.Constant.vPosRange.x[0] = halfStageW - imgW;//
-    this.Constant.vPosRange.x[1] = halfStageW;//
+    this.state.Constant.vPosRange.topY[0] = -halfImgH;
+    this.state.Constant.vPosRange.topY[1] = halfStageH - halfImgH * 3;//
+    this.state.Constant.vPosRange.x[0] = halfStageW - imgW;//
+    this.state.Constant.vPosRange.x[1] = halfStageW;//
 
     this.rearrange(0)
   }
